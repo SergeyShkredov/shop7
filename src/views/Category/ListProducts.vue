@@ -1,0 +1,55 @@
+<template>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h4 class="pt-3">{{category.categoryName}}</h4>
+        <h5>{{msg}}</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div v-for="product of category.products" :key="product.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+        <ProductBox :product="product">
+        </ProductBox>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import ProductBox from '../../components/Product/ProductBox';
+export default {
+  name: 'ListProducts',
+  data(){
+    return {
+      id : null,
+      categoryIndex : null,
+      category : {},
+      len : 0,
+      msg : null
+    }
+  },
+  components : {ProductBox},
+  props : [ "baseURL" , "categories" ],
+  mounted() {
+    this.id = this.$route.params.id;
+    this.categoryIndex = this.categories.findIndex(category => category.id == this.id);
+    this.category = this.categories[this.categoryIndex];
+
+  }
+}
+</script>
+
+<style scoped>
+h4 {
+  font-family: 'Roboto', sans-serif;
+  color: #484848;
+  font-weight: 700;
+}
+
+h5 {
+  font-family: 'Roboto', sans-serif;
+  color: #686868;
+  font-weight: 300;
+}
+</style>
