@@ -1,6 +1,6 @@
 <template>
   <Navbar
-      :cartCount="cartCount"
+      :cartCount123="cartCount"
       @resetCartCount="resetCartCount"
       v-if="!['Signup', 'Signin'].includes($route.name)"
   />
